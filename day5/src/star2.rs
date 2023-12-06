@@ -5,20 +5,19 @@ pub fn star2(){
     let seeds:Vec<_> = start.split_whitespace().skip(1).map(|s| s.parse().unwrap()).collect::<Vec<u64>>();
     
     let mut min = u64::MAX;
-    for i in (0..seeds.len()).step_by(2){
-        println!("Halfway?");
-        for mut s in seeds[i]..(seeds[i] + seeds[i+1]){
-            for rules in &ruleset{
-                for r in rules{
-                    if (s >= r.from) & (s < (r.from + r.length)){
-                        s = s - r.from + r.to;
-                        break;
-                    }
-                }
-            }
-            min = min.min(s)
-        }
-    }
+    // for i in (0..seeds.len()).step_by(2){
+    //     for mut s in seeds[i]..(seeds[i] + seeds[i+1]){
+    //         for rules in &ruleset{
+    //             for r in rules{
+    //                 if (s >= r.from) & (s < (r.from + r.length)){
+    //                     s = s - r.from + r.to;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //         min = min.min(s)
+    //     }
+    // }
     println!("{:?}", min);
 }
 
