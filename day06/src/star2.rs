@@ -1,5 +1,6 @@
 use itertools::Itertools;
 
+//Change to pq for speed
 pub fn star2() {
     let (t, d) = include_str!("data.in")
         .split("\n")

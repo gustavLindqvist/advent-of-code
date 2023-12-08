@@ -1,3 +1,4 @@
+//Change to pq for speed
 pub fn star1() {
     let product = itertools::Itertools::tuple_windows(include_str!("data.in").split("\n"))
         .map(|(s1, s2)| {
