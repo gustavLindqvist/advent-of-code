@@ -1,1 +1,1 @@
-pub fn oneline(){}
+pub fn oneline() {}

@@ -22,22 +22,22 @@ pub fn star2() {
     ]);
     let lines = include_str!("data.in").lines().map(|l| l.to_string());
     let mut sum = 0;
-    for mut l in lines{
+    for mut l in lines {
         l.extend("ugly".chars());
         let chars = l.chars().collect::<Vec<char>>();
         let windows = chars.windows(5).collect::<Vec<_>>();
-        let mut nums = vec!();
-        for w in windows{
+        let mut nums = vec![];
+        for w in windows {
             let mut s = String::from("");
-            for c in w{
+            for c in w {
                 s.push(*c);
-                if parser.contains_key(s.as_str()){
+                if parser.contains_key(s.as_str()) {
                     nums.push(parser.get(s.as_str()).unwrap());
                     break;
                 }
             }
         }
-        sum += *nums.last().unwrap() + nums[0]*10;
+        sum += *nums.last().unwrap() + nums[0] * 10;
     }
     print!("{}\n", sum);
 }

@@ -1,21 +1,34 @@
-use std::collections::HashMap;
 use itertools::Itertools;
+use std::collections::HashMap;
 
-pub fn star2(){
+pub fn star2() {
     let (ins, map) = include_str!("data.in").split_once("\n\n").unwrap();
-    let pairs = map.lines().map(|l| l.chars().filter(|c| !['=', ',', '(', ')'].contains(c)).collect::<String>()).collect::<Vec<_>>();
+    let pairs = map
+        .lines()
+        .map(|l| {
+            l.chars()
+                .filter(|c| !['=', ',', '(', ')'].contains(c))
+                .collect::<String>()
+        })
+        .collect::<Vec<_>>();
     let mut path = HashMap::new();
-    pairs.iter().for_each(|s| s.split_whitespace().tuple_windows().for_each(|(t0, t1,t2)|{path.insert(t0, (t1, t2));}));
-    
+    pairs.iter().for_each(|s| {
+        s.split_whitespace()
+            .tuple_windows()
+            .for_each(|(t0, t1, t2)| {
+                path.insert(t0, (t1, t2));
+            })
+    });
+
     let nodes = path.keys().filter(|s| s.ends_with('A')).collect_vec();
     let mut steps = vec![];
-    for n in nodes{
+    for n in nodes {
         let mut node = *n;
         let mut step = 0;
         let mut inst = ins.chars().cycle();
         while !node.ends_with('Z') {
             step += 1;
-            if inst.next().unwrap() == 'L'{
+            if inst.next().unwrap() == 'L' {
                 node = path.get(node).unwrap().0;
             } else {
                 node = path.get(node).unwrap().1;
@@ -23,7 +36,7 @@ pub fn star2(){
         }
         steps.push(step);
     }
-    print!("{:?}\n",(steps.iter().fold(1, |f, n| lcm(f, *n))));
+    print!("{:?}\n", (steps.iter().fold(1, |f, n| lcm(f, *n))));
 }
 
 use std::cmp::{max, min};
