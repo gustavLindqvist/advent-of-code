@@ -7,7 +7,7 @@ pub fn star2() {
         let new_c = [c; 5].join(",");
         let new_l = [[l; 5].join("?"), "..".to_string()].join("");
         // let new_c = c;
-        // let new_l = [l, "..."].join("");
+        // let new_l = [l, ".."].join("");
         
         let comp = new_c.split(",").map(|s| s.parse::<usize>().unwrap());
         let mut strings = Counter::new();
